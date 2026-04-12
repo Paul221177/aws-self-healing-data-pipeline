@@ -1,32 +1,3 @@
-Welcome to Ubuntu 24.04.4 LTS (GNU/Linux 6.17.0-1010-aws x86_64)
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/pro
-
- System information as of Fri Apr 10 21:21:36 UTC 2026
-
-  System load:  0.0               Processes:             110
-  Usage of /:   49.0% of 6.71GB   Users logged in:       0
-  Memory usage: 25%               IPv4 address for enX0: 172.31.32.58
-  Swap usage:   0%
-
- * Ubuntu Pro delivers the most comprehensive open source security and
-   compliance features.
-
-   https://ubuntu.com/aws/pro
-
-Expanded Security Maintenance for Applications is not enabled.
-
-8 updates can be applied immediately.
-To see these additional updates run: apt list --upgradable
-
-Enable ESM Apps to receive additional future security updates.
-See https://ubuntu.com/esm or run: sudo pro status
-
-
-Last login: Fri Apr 10 18:44:34 2026 from 18.206.107.28
-ubuntu@ip-172-31-32-58:~$ cat /home/ubuntu/pipeline.py
 import pandas as pd
 import boto3
 from io import BytesIO
@@ -173,4 +144,3 @@ if __name__ == "__main__":
             else:
                 print(f"Attempt {attempt} failed. Retrying in {RETRY_DELAY_SECONDS} seconds...")
                 time.sleep(RETRY_DELAY_SECONDS)
-ubuntu@ip-172-31-32-58:~$ 
