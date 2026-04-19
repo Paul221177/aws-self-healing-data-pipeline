@@ -22,4 +22,4 @@ bucket_name = "nsitf-data-misheal-001"
 s3.upload_file(file_path, bucket_name, "output.csv")
 
 print("File uploaded to S3 successfully")
-1/0
+
