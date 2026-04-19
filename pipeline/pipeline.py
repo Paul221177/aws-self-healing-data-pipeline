@@ -1,25 +1,36 @@
-import pandas as pd
-import boto3
+import time
+import logging
 
-# Create sample data
-data = {
-    "name": ["Paul", "John", "Mary"],
-    "age": [25, 30, 22]
-}
+logging.basicConfig(level=logging.INFO)
 
-df = pd.DataFrame(data)
+def run_pipeline():
+    print("Running pipeline...")
 
-# Save file
-file_path = "/tmp/output.csv"
-df.to_csv(file_path, index=False)
+    # your actual pipeline logic here
+    # example:
+    print("CSV file created successfully")
+    print("File uploaded to S3 successfully")
 
-print("CSV file created successfully")
+def main():
+    retries = 3
+    delay = 5  # seconds
 
-# Upload to S3
-s3 = boto3.client("s3")
+    for attempt in range(1, retries + 1):
+        try:
+            print(f"Attempt {attempt}...")
+            run_pipeline()
+            print("Pipeline completed successfully")
+            return
 
-bucket_name = "nsitf-data-misheal-001"
-s3.upload_file(file_path, bucket_name, "output.csv")
+        except Exception as e:
+            logging.error(f"Error on attempt {attempt}: {e}")
 
-print("File uploaded to S3 successfully")
+            if attempt < retries:
+                print(f"Retrying in {delay} seconds...")
+                time.sleep(delay)
+            else:
+                print("All retries failed. Raising error...")
+                raise
 
+if __name__ == "__main__":
+    main()
