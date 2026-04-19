@@ -6,19 +6,19 @@ logging.basicConfig(level=logging.INFO)
 def run_pipeline():
     print("Running pipeline...")
 
-    # your actual pipeline logic here
-    # example:
+    # your real pipeline logic here
     print("CSV file created successfully")
     print("File uploaded to S3 successfully")
 
 def main():
     retries = 3
-    delay = 5  # seconds
+    delay = 5
 
     for attempt in range(1, retries + 1):
         try:
             print(f"Attempt {attempt}...")
             run_pipeline()
+            print("PIPELINE_SUCCESS")
             print("Pipeline completed successfully")
             return
 
@@ -29,6 +29,7 @@ def main():
                 print(f"Retrying in {delay} seconds...")
                 time.sleep(delay)
             else:
+                print("PIPELINE_FAILED")
                 print("All retries failed. Raising error...")
                 raise
 
